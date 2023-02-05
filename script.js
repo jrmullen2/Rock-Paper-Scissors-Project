@@ -1,26 +1,25 @@
 function getComputerChoice()
 {
     let randomNumber = Math.floor(Math.random() * 100);
-    let randomChoice = "";
-    switch(randomChoice)
-    {
-        case randomNumber >= 0 && randomNumber < 34:
+    
+    let randomChoice = "No Choice";
+
+         if(randomNumber >= 0 && randomNumber < 34)
+         {
             randomChoice = "rock";
-            break;
-        
-        case randomNumber >= 34 && randomNumber < 67:
+         }
+            
+         else if(randomNumber >= 34 && randomNumber < 67)
+         {
             randomChoice = "paper";
-            break;
+         }
         
-        case randomNumber >= 67 && randonmNumber < 101:
+         else if(randomNumber >= 67 && randomNumber < 101)
+         {
             randomChoice = "scissors";
-            break;
+         }
         
-        default: 
-            randomChoice = "";
-            break; 
-    }
-    return randomChoice;   
+    console.log(randomChoice);   
 }
 function playRound(playerSelection, computerSelection)
 {
@@ -37,8 +36,8 @@ function playRound(playerSelection, computerSelection)
             break;
 
         case playerSelection === "scissors" && computerSelection === "rock":
-                result = "You Lose! Rock beats Scissors";
-                break;
+            result = "You Lose! Rock beats Scissors";
+            break;
 
         case playerSelection === "paper" && computerSelection === "rock":
             result = "You Win! Paper beats Rock";
@@ -84,3 +83,4 @@ function game()
         console.log(`You are the loser!\nYour Score: ${playerScore}\nComputer Score: ${computerScore}`);
     }
 }
+game();
