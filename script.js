@@ -23,56 +23,66 @@ function getComputerChoice()
 }
 function playRound(playerSelection, computerSelection)
 {
-    let result = false;
+    let result;
+    let roundWinner;
     playerSelection = playerSelection.toLowerCase();
    if(playerSelection === "rock" && computerSelection === "paper")
    {
         result = false;
-        console.log("You Lose! Paper beats Rock");
+        roundWinner = "You Lose! Paper beats Rock";
    }
             
     else if(playerSelection === "paper" && computerSelection === "scissors")
     {
         result = false;
-        console.log("You Lose! Scissors beats Paper");
+        roundWinner = "You Lose! Scissors beats Paper";
     }
 
     else if(playerSelection === "scissors" && computerSelection === "rock")
     {
         result = false;
-        console.log("You Lose! Rock beats Scissors");
+        roundWinner = "You Lose! Rock beats Scissors";
     }
 
     else if(playerSelection === "paper" && computerSelection === "rock")
     {
         result = true;
-        console.log("You Win! Paper beats Rock");
+        roundWinner = "You Win! Paper beats Rock";
     }
     
     else if(playerSelection === "scissors" && computerSelection === "paper")
     {
         result = true;
-        console.log("You Win! Scissors beats Paper");
+        roundWinner = "You Win! Scissors beats Paper";
     }
            
-
     else if(playerSelection === "rock" && computerSelection === "scissors")
     {
         result = true;
-        console.log("You Win! Rock beats Scissors");
+        roundWinner = "You Win! Rock beats Scissors";
     }
-        
-    return result;  
+    else
+    {
+        return result;
+    }
+        console.log(roundWinner); 
+        return result; 
+    
 }
 function game()
-{
+{   
     let playerScore = 0;
     let computerScore = 0;
     for(let i = 0; i < 5; i++)
     {
         userResponse = prompt("Please input your choice of rock, paper, or scissors.");
-
-        if(playRound(userResponse, getComputerChoice()) === true)
+        let roundResult = playRound(userResponse, getComputerChoice());
+        if(roundResult === undefined)
+        {
+            i--;
+            console.log("This round doesn't count. It's a tie!");
+        }
+        else if(roundResult === true)
         {
             playerScore += 1;
         }
