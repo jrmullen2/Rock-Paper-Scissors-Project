@@ -58,3 +58,29 @@ function playRound(playerSelection, computerSelection)
     }
     return result;  
 }
+function game()
+{
+    userResponse = prompt("Please input your choice of rock, paper, or scissors.");
+    let playerScore = 0;
+    let computerScore = 0;
+    for(let i = 0; i < 5; i++)
+    {
+        console.log(playRound(userResponse, getComputerChoice()));
+        if(playRound(userResponse, getComputerChoice()).slice(4, 6) === "Win")
+        {
+            playerScore += 1;
+        }
+        if(playRound(userResponse, getComputerChoice()).slice(4, 7) === "Lose")
+        {
+            computerScore += 1;
+        }
+    }
+    if(playerScore > computerScore)
+    {
+        console.log(`You are the winner!\nYour Score: ${playerScore}\nComputer Score: ${computerScore}`);
+    }
+    if(playerScore < computerScore)
+    {
+        console.log(`You are the loser!\nYour Score: ${playerScore}\nComputer Score: ${computerScore}`);
+    }
+}
