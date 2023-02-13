@@ -1,3 +1,11 @@
+const round = document.querySelector(".round");
+const final = document.querySelector(".final");
+const buttons = document.querySelectorAll("button");
+
+let playerScore = 0;
+
+let computerScore = 0;
+
 function getComputerChoice()
 {
     //Generate a random number
@@ -27,92 +35,79 @@ function playRound(playerSelection, computerSelection)
     //Variables that indicate if its a loss or victory
     let result;
 
-    let roundWinner;
-
-    //Ensures input is not case-sensitive
-    playerSelection = playerSelection.toLowerCase();
-
     //Determine if user wins or loses or has a tie
    if(playerSelection === "rock" && computerSelection === "paper")
    {
         result = false;
-        roundWinner = "You Lose! Paper beats Rock";
+        round.textContent = "You Lose! Paper beats Rock";
    }
             
     else if(playerSelection === "paper" && computerSelection === "scissors")
     {
         result = false;
-        roundWinner = "You Lose! Scissors beats Paper";
+        round.textContent = "You Lose! Scissors beats Paper";
     }
 
     else if(playerSelection === "scissors" && computerSelection === "rock")
     {
         result = false;
-        roundWinner = "You Lose! Rock beats Scissors";
+        round.textContent = "You Lose! Rock beats Scissors";
     }
 
     else if(playerSelection === "paper" && computerSelection === "rock")
     {
         result = true;
-        roundWinner = "You Win! Paper beats Rock";
+        round.textContent = "You Win! Paper beats Rock";
     }
     
     else if(playerSelection === "scissors" && computerSelection === "paper")
     {
         result = true;
-        roundWinner = "You Win! Scissors beats Paper";
+        round.textContent = "You Win! Scissors beats Paper";
     }
            
     else if(playerSelection === "rock" && computerSelection === "scissors")
     {
         result = true;
-        roundWinner = "You Win! Rock beats Scissors";
+        round.textContent = "You Win! Rock beats Scissors";
     }
-    else
+    else if(playerSelection === computerSelection)
     {
+        result = true;
+        round.textContent("Its a tie!");
+    }
+    if(result === true)
+    {
+        playerScore += 1;
+        final.textContent = `Your Score: ${playerScore}\nComputer Score: ${computerScore}`;
+    }
+    else if(result === false)
+    {
+        computerScore += 1;
+        final.textContent = `Your Score: ${playerScore}\nComputer Score: ${computerScore}`;
+    }
         return result;
-    }
-        console.log(roundWinner); 
-        return result; 
-    
-}
-function game()
-{   
-    //Variables to keep track of score
-    let playerScore = 0;
-
-    let computerScore = 0;
-
-    for(let i = 0; i < 5; i++)
+}  
+ //compares scores and determines winner
+ function determineWinner()
+ {
+    if(playerScore === 5)
     {
-        userResponse = prompt("Please input your choice of rock, paper, or scissors.");
-
-        let roundResult = playRound(userResponse, getComputerChoice());
-
-        //Account for a tie occuring
-        if(roundResult === undefined)
-        {
-            i--;
-            console.log("This round doesn't count. It's a tie!");
-        }
-        else if(roundResult === true)
-        {
-            playerScore += 1;
-        }
-        else
-        {
-            computerScore += 1;
-        }
-    }
-    //compares scores and determines winner
-    if(playerScore > computerScore)
-    {
-        console.log(`You are the winner!\nYour Score: ${playerScore}\nComputer Score: ${computerScore}`);
+        final.textContent = `You are the winner!\nYour Score: ${playerScore}\nComputer Score: ${computerScore}`;
+        playerScore = 0;
+        computerScore = 0;
     }
     
-    if(playerScore < computerScore)
+    if(computerScore === 5)
     {
-        console.log(`You are the loser!\nYour Score: ${playerScore}\nComputer Score: ${computerScore}`);
+        final.textContent = `You are the loser!\nYour Score: ${playerScore}\nComputer Score: ${computerScore}`;
+        playerScore = 0;
+        computerScore = 0;
     }
 }
-game();
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+    playRound(button.classList.value, getComputerChoice())
+    determineWinner()
+    });
+});
