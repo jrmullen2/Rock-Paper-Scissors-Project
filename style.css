@@ -1,4 +1,57 @@
+html {
+  height: 100%;
+}
 body {
   background-image: url(images/carl-raw-8Gdayy2Lhi0-unsplash.jpg);
   background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30vh;
+}
+#captions {
+  display: flex;
+  flex-direction: column;
+  gap: 5vh;
+}
+#caption,
+#subCaption {
+  background-color: black;
+}
+#caption {
+  font-size: 36px;
+  font-weight: 700;
+  color: yellow;
+}
+#subCaption {
+  font-size: 24px;
+  font-weight: 700;
+  color: indianred;
+}
+#game {
+  display: flex;
+  justify-content: center;
+  gap: 10%;
+}
+button {
+  border-radius: 8px;
+  background-color: lightsalmon;
+  font-size: 24px;
+  border: none;
+}
+#results {
+  background-color: black;
+  font-size: 24px;
+}
+#round {
+  color: aqua;
+}
+#final {
+  color: greenyellow;
 }
